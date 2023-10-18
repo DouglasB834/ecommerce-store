@@ -1,0 +1,36 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+//tabelas de category  1 to N
+model Category {
+  id       String    @id @default(uuid())
+  name     String
+  slug     String
+  imageUrl String
+  products Product[]
+}
+
+//tabela product 
+model Product {
+  id              String   @id @default(uuid())
+  name            String
+  slug            String
+  description     String
+  imgUrl          String
+  basePrice       Decimal  @db.Decimal(8, 2)
+  discountpercent Int      @default(0)
+  category        Category @relation(fields: [categoryId], references: [id])
+  categoryId      String
+  // totalPrice 
+}
+
+//fazer totalPrice com campo dinamico pegando o discount..+ basePrice fn healp
