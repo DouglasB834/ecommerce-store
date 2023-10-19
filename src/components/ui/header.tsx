@@ -1,4 +1,4 @@
-import React from "react";
+"use client";
 import { Card } from "./card";
 import { Button } from "./button";
 import {
@@ -10,8 +10,22 @@ import {
   ShoppingCart,
 } from "lucide-react";
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "./sheet";
+import { signIn, signOut, useSession } from "next-auth/react";
+import { Avatar, AvatarFallback } from "./avatar";
+import { AvatarImage } from "@radix-ui/react-avatar";
 
 export const Header = () => {
+  const { data, status } = useSession();
+
+  const handleLoginClick = async () => {
+    await signIn();
+  };
+
+  const handleLogoutClick = async () => {
+    await signOut();
+  };
+
+  console.log(useSession());
   return (
     <Card className="flex justify-between p-[1.8rem] items-center ">
       <Sheet key={"left"}>
@@ -24,10 +38,41 @@ export const Header = () => {
         {/* Shetcontent para o conteudo que vai ter dentro  */}
         <SheetContent side={"left"}>
           <SheetHeader className="text-lg font-semibold">Menu</SheetHeader>
+          {status === "authenticated" && data.user && (
+            <div className="flex gap-2 items-center my-2 pb-1 border-b-2 wfull ">
+              <Avatar>
+                <AvatarFallback>
+                  {data?.user?.name?.[0].toLocaleUpperCase()}
+                </AvatarFallback>
+                {data.user?.image && <AvatarImage src={data.user?.image!} />}
+              </Avatar>
+              <div>
+                <span className="text-gray-400 text-xs  ">Boas compras</span>
+                <figcaption className="max-w-[20ch] overflow-hidden truncate">
+                  {data?.user?.name}
+                </figcaption>
+              </div>
+            </div>
+          )}
           <div className="flex flex-col gap-4 ">
-            <Button variant={"outline"} className="w-full justify-start gap-2">
-              <LogInIcon size={16} /> Fazer login
-            </Button>
+            {status === "authenticated" ? (
+              <Button
+                variant={"outline"}
+                className="w-full justify-start gap-2"
+                onClick={handleLogoutClick}
+              >
+                <LogInIcon size={16} /> Sair
+              </Button>
+            ) : (
+              <Button
+                variant={"outline"}
+                className="w-full justify-start gap-2"
+                onClick={handleLoginClick}
+              >
+                <LogInIcon size={16} /> Fazer login
+              </Button>
+            )}
+
             <Button variant={"outline"} className="w-full justify-start gap-2">
               <HomeIcon size={16} /> Inicio
             </Button>

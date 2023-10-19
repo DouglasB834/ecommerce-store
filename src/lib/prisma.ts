@@ -1,18 +1,17 @@
-// para evitar que o prisma client tenha mais de uam instancia
-
 import { PrismaClient } from "@prisma/client";
+
 declare global {
-  var cachePrisma: PrismaClient;
+  var cachedPrisma: PrismaClient;
 }
 
 let prisma: PrismaClient;
 if (process.env.NODE_ENV === "production") {
   prisma = new PrismaClient();
 } else {
-  if (global.cachePrisma) {
-    global.cachePrisma = new PrismaClient();
+  if (!global.cachedPrisma) {
+    global.cachedPrisma = new PrismaClient();
   }
-  prisma = global.cachePrisma;
+  prisma = global.cachedPrisma;
 }
 
-export const prismaClient = prisma; //importa o L:8 let prisma
+export const prismaClient = prisma;
