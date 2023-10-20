@@ -21,16 +21,15 @@ model Category {
 
 //tabela product 
 model Product {
-  id              String   @id @default(uuid())
-  name            String
-  slug            String
-  description     String
-  imgUrl          String
-  basePrice       Decimal  @db.Decimal(8, 2)
-  discountpercent Int      @default(0)
-  category        Category @relation(fields: [categoryId], references: [id])
-  categoryId      String
-  // totalPrice 
+  id                 String   @id @default(uuid())
+  name               String
+  slug               String
+  description        String
+  basePrice          Decimal  @db.Decimal(8, 2)
+  imageUrls          String[]
+  categoryId         String
+  category           Category @relation(fields: [categoryId], references: [id])
+  discountPercentage Int      @default(0)
 }
 
 //fazer totalPrice com campo dinamico pegando o discount..+ basePrice fn healp
