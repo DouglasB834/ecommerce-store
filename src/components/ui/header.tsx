@@ -25,7 +25,6 @@ export const Header = () => {
     await signOut();
   };
 
-  console.log(useSession());
   return (
     <Card className="flex justify-between p-[1.8rem] items-center ">
       <Sheet key={"left"}>
