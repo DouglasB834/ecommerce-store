@@ -79,7 +79,7 @@ export const Header = () => {
               <PercentIcon size={16} /> Ofertas
             </Button>
             <Button variant={"outline"} className="w-full justify-start gap-2">
-              <ListOrderedIcon size={16} /> Catálago
+              <ListOrderedIcon size={16} /> Catálogo
             </Button>
           </div>
         </SheetContent>
