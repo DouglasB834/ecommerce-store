@@ -9,10 +9,17 @@ import {
   PercentIcon,
   ShoppingCart,
 } from "lucide-react";
-import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "./sheet";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetTrigger,
+} from "./sheet";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { Avatar, AvatarFallback } from "./avatar";
 import { AvatarImage } from "@radix-ui/react-avatar";
+import Link from "next/link";
 
 export const Header = () => {
   const { data, status } = useSession();
@@ -78,14 +85,23 @@ export const Header = () => {
             <Button variant={"outline"} className="w-full justify-start gap-2">
               <PercentIcon size={16} /> Ofertas
             </Button>
-            <Button variant={"outline"} className="w-full justify-start gap-2">
-              <ListOrderedIcon size={16} /> Catálogo
-            </Button>
+            <SheetClose asChild>
+              <Link href={`/catalogo`}>
+                <Button
+                  variant={"outline"}
+                  className="w-full justify-start gap-2"
+                >
+                  <ListOrderedIcon size={16} /> Catálogo
+                </Button>
+              </Link>
+            </SheetClose>
           </div>
         </SheetContent>
       </Sheet>
       <h1 className="font-bold text-lg ">
-        <span className="text-primary">Ecommerce</span> Store
+        <Link href={"/"}>
+          <span className="text-primary">Ecommerce</span> Store
+        </Link>
       </h1>
       <Button variant={"outline"} size={"icon"}>
         <ShoppingCart />

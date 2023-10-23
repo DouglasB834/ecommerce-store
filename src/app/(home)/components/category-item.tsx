@@ -9,6 +9,7 @@ import {
   SpeakerIcon,
   SquareIcon,
 } from "lucide-react";
+import Link from "next/link";
 
 interface ICategoryProps {
   category: Category;
@@ -16,13 +17,15 @@ interface ICategoryProps {
 
 export const CategoryItem = ({ category }: ICategoryProps) => {
   return (
-    <Badge
-      variant={"outline"}
-      className="flex  gap-2 justify-center items-center py-2  "
-    >
-      {CATEGORY_ICON[category?.slug as keyof typeof CATEGORY_ICON]}
+    <Link href={`/category/${category.slug}`}>
+      <Badge
+        variant={"outline"}
+        className="flex  gap-2 justify-center items-center py-2 hover:bg-accent cursor-pointer"
+      >
+        {CATEGORY_ICON[category?.slug as keyof typeof CATEGORY_ICON]}
 
-      {category?.name}
-    </Badge>
+        {category?.name}
+      </Badge>
+    </Link>
   );
 };
