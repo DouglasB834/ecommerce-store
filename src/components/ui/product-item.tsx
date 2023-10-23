@@ -12,8 +12,8 @@ interface IProductItemProps {
 
 export const ProductItem = ({ product }: IProductItemProps) => {
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex bg-accent relative w-[160px] max-w-[160px] h-[170px] justify-center items-center rounded-lg">
+    <div className="flex flex-col gap-4  ">
+      <div className="relative flex h-[170px]  w-[170px] items-center justify-center rounded-lg bg-accent">
         <figure className="flex justify-center items-center">
           <Image
             src={product.imageUrls?.[0]}
@@ -32,20 +32,20 @@ export const ProductItem = ({ product }: IProductItemProps) => {
           </Badge>
         )}
       </div>
-      <div className="max-w-[160px] mx-[5px]">
-        <p className="overflow-hidden whitespace-nowrap text-ellipsis text-[12px] ">
+      <div className="flex flex-col gap-1">
+        <p className="overflow-hidden whitespace-nowrap text-ellipsis text-[12px] w-[22ch] ">
           {product.name}
         </p>
-        <div>
+        <div className="flex   gap-2 items-center">
           {product?.discountPercentage > 0 ? (
-            <div className="flex  gap-2 items-center">
+            <>
               <p className="text-base font-semibold">
                 R$ {product?.totalPrice.toFixed(2)}
               </p>
               <p className="text-xs line-through opacity-75">
                 RS {Number(product?.basePrice).toFixed(2)}
               </p>
-            </div>
+            </>
           ) : (
             <div className="flex gap-2 items-center">
               <p className="text-base font-semibold">
@@ -53,11 +53,11 @@ export const ProductItem = ({ product }: IProductItemProps) => {
               </p>
             </div>
           )}
-          <div className="starts flex">
-            <p className="text-sm ">
-              🌟🌟🌟🌟⭐ <span className=" line-through opacity-75">(25)</span>
-            </p>
-          </div>
+        </div>
+        <div className="starts flex">
+          <p className="text-sm ">
+            🌟🌟🌟🌟⭐ <span className=" line-through opacity-75">(25)</span>
+          </p>
         </div>
       </div>
     </div>
