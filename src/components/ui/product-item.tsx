@@ -37,7 +37,7 @@ export const ProductItem = ({ product }: IProductItemProps) => {
           {product.name}
         </p>
         <div>
-          {product?.totalPrice > 0 ? (
+          {product?.discountPercentage > 0 ? (
             <div className="flex  gap-2 items-center">
               <p className="text-base font-semibold">
                 R$ {product?.totalPrice.toFixed(2)}

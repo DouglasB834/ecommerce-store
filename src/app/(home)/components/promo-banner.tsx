@@ -2,11 +2,6 @@ import Image from "next/image";
 import React from "react";
 import { ImageProps } from "next/image";
 
-interface IImgProps {
-  src: string;
-  alt: string;
-}
-
 export const PromoBanner = ({ src, alt, ...props }: ImageProps) => {
   return (
     <figure>
