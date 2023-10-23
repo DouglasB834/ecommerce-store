@@ -13,8 +13,8 @@ interface IProductItemProps {
 export const ProductItem = ({ product }: IProductItemProps) => {
   return (
     <div className="flex flex-col gap-4  ">
-      <div className="relative flex w-full h-[170px]  items-center  justify-center rounded-lg bg-accent">
-        <figure className="flex justify-center items-center">
+      <div className="relative flex   items-center  justify-center rounded-lg bg-accent">
+        <figure className="flex aspect-square justify-center items-center h-[170px] w-full">
           <Image
             src={product.imageUrls?.[0]}
             alt={product.name}
@@ -22,7 +22,7 @@ export const ProductItem = ({ product }: IProductItemProps) => {
             height={0}
             sizes="100vw"
             title={product.name}
-            className=" w-auto max-h-[70%] max-w-[80%]"
+            className=" w-auto max-h-[70%] max-w-[90%]"
           />
         </figure>
         {product.discountPercentage > 0 && (
