@@ -20,14 +20,10 @@ export const ProductList = async ({ products }: IProductListProps) => {
   //   });
 
   return (
-    <section
-      aria-label="Carde com desconto"
-      className="px-3 flex flex-col gap-2 "
-    >
-      <TitlesProducts text={"Ofertas"} />
+    <section aria-label="Carde com desconto" className=" flex flex-col gap-2 ">
       <div
         className="flex overflow-x-auto  
-    [&::-webkit-scrollbar]:hidden gap-4
+    [&::-webkit-scrollbar]:hidden gap-4 px-3
     "
       >
         {products.map((product) => (
