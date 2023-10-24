@@ -13,7 +13,7 @@ interface IProductItemProps {
 
 export const ProductItem = ({ product }: IProductItemProps) => {
   return (
-    <Link href={`product/${product.slug}`}>
+    <Link href={`/product/${product.slug}`}>
       <div className="flex flex-col gap-4  ">
         <div className="relative flex   items-center  justify-center rounded-lg bg-accent">
           <figure className="flex aspect-square justify-center items-center h-[170px] w-full">
