@@ -27,7 +27,7 @@ export const ProductList = async ({ products }: IProductListProps) => {
     "
       >
         {products.map((product) => (
-          <div key={product?.id} className="w-[170px] max-w-[170px]">
+          <div key={product?.id} className="w-[160px]">
             <ProductItem product={computerProductPrice(product)} />
           </div>
         ))}
