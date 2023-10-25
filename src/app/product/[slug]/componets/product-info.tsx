@@ -2,31 +2,38 @@
 import { Button } from "@/components/ui/button";
 import { DiscountBadge } from "@/components/ui/discount-badge";
 import { IProductTotalPrice } from "@/helps/product";
+import { CartContext } from "@/providers/context-cart";
 import {
   ArrowLeftIcon,
   ArrowRightIcon,
   StarIcon,
   TruckIcon,
 } from "lucide-react";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 interface IProductInfoProps {
-  product: Pick<
-    IProductTotalPrice,
-    "name" | "basePrice" | "description" | "discountPercentage" | "totalPrice"
-  >; //ajuda e receber somente esses conteúdo tirando qualquer outro desnecessario
+  product: IProductTotalPrice;
+  /*
+  Pick<
+  IProductTotalPrice,
+  "name" | "basePrice" | "description" | "discountPercentage" | "totalPrice"
+  >; ajuda e receber somente esses conteúdo tirando qualquer outro desnecessario
+  */
 }
 
-export const ProductInfo = ({
-  product: { name, basePrice, description, discountPercentage, totalPrice },
-}: IProductInfoProps) => {
+export const ProductInfo = ({ product }: IProductInfoProps) => {
   const [quantity, setQuantity] = useState(1);
+  const { addToCart } = useContext(CartContext);
 
   const handleDecreaseQuatity = () => {
     setQuantity((prev) => (prev == 1 ? prev : prev - 1));
   };
   const handleIncreseQuantitu = () => {
     setQuantity((prev) => prev + 1);
+  };
+
+  const handleAddToCart = () => {
+    addToCart({ ...product, quantity });
   };
 
   return (
@@ -39,25 +46,25 @@ export const ProductInfo = ({
           <StarIcon size={14} color="#8162FF" />
           <StarIcon size={14} color="#8162FF" />
         </span>
-        <h1 className="text-lg">{name}</h1>
+        <h1 className="text-lg">{product.name}</h1>
 
         <div className="flex    gap-2 items-center">
           <h2 className=" text-lg font-bold">
-            R$ {Number(totalPrice)?.toFixed(2)}
+            R$ {Number(product.totalPrice)?.toFixed(2)}
           </h2>
-          {discountPercentage > 0 && (
+          {product.discountPercentage > 0 && (
             // <Badge className=" py-[4px] px-[8px]">
             //   <ArrowDown size={14} />
             //   {discountPercentage}%
             // </Badge> estudo
-            <DiscountBadge>{discountPercentage}</DiscountBadge>
+            <DiscountBadge>{product.discountPercentage}</DiscountBadge>
           )}
         </div>
-        {discountPercentage > 0 && (
+        {product.discountPercentage > 0 && (
           <p className="opacity-75 text-[1rem]">
             De:
             <span className="line-through ">
-              R$ {Number(basePrice)?.toFixed(2)}
+              R$ {Number(product.basePrice)?.toFixed(2)}
             </span>
           </p>
         )}
@@ -84,10 +91,11 @@ export const ProductInfo = ({
 
         <div className="flex flex-col gap-2 mt-2">
           <h3 className="text-base font-bold">Descriçao</h3>
-          <p className="text-[14px] opacity-70">{description}</p>
+          <p className="text-[14px] opacity-70">{product.description}</p>
           <Button
             variant={"default"}
             className=" text-base font-bold uppercase pt-2 mt-10"
+            onClick={handleAddToCart}
           >
             Adicionar ao carrinho
           </Button>
