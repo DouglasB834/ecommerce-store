@@ -7,7 +7,7 @@ import {
   LogInIcon,
   MenuIcon,
   PercentIcon,
-  ShoppingCart,
+  ShoppingCartIcon,
 } from "lucide-react";
 import {
   Sheet,
@@ -20,6 +20,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { Avatar, AvatarFallback } from "./avatar";
 import { AvatarImage } from "@radix-ui/react-avatar";
 import Link from "next/link";
+import { Cart } from "./cart";
 
 export const Header = () => {
   const { data, status } = useSession();
@@ -110,9 +111,18 @@ export const Header = () => {
           <span className="text-primary">Ecommerce</span> Store
         </Link>
       </h1>
-      <Button variant={"outline"} size={"icon"}>
-        <ShoppingCart />
-      </Button>
+
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button variant={"outline"} size={"icon"}>
+            <ShoppingCartIcon />
+          </Button>
+        </SheetTrigger>
+
+        <SheetContent side={"right"} className="p-4 w-[88%] ">
+          <Cart />
+        </SheetContent>
+      </Sheet>
     </Card>
   );
 };
