@@ -15,6 +15,7 @@ interface ICardContext {
   // cartTotalQuantity: number;
   decreseProductCart: (productId: string) => void;
   increseProductCart: (productId: string) => void;
+  removeProductCart: (productId: string) => void;
   addToCart: (product: ICartProduct) => void;
   // removeFromCart: (product: Product) => void;
 }
@@ -66,6 +67,7 @@ export const CartProvider = ({ children }: IChildrenProps) => {
         .filter((item) => item.quantity > 0)
     );
   };
+
   const increseProductCart = (productId: string) => {
     setProducts((prev) =>
       prev.map((productCart) => {
@@ -80,11 +82,17 @@ export const CartProvider = ({ children }: IChildrenProps) => {
     );
   };
 
+  const removeProductCart = (productId: string) => {
+    //remover produto do carrinho
+    setProducts((prev) => prev.filter((product) => product.id !== productId));
+  };
+
   const value = {
     products,
     addToCart,
     decreseProductCart,
     increseProductCart,
+    removeProductCart,
     cartTotalPrice: 0,
     cartBaseprice: 0,
     cartTotalDiscount: 0,

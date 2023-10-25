@@ -9,13 +9,17 @@ interface IProductItemCartProps {
 }
 
 export const CartItem = ({ product }: IProductItemCartProps) => {
-  const { decreseProductCart, increseProductCart } = useContext(CartContext);
+  const { decreseProductCart, increseProductCart, removeProductCart } =
+    useContext(CartContext);
 
   const handleDescreseProductCart = () => {
     decreseProductCart(product.id);
   };
   const handleIncreseProductCart = () => {
     increseProductCart(product.id);
+  };
+  const handleRemoveProductCart = () => {
+    removeProductCart(product.id);
   };
   return (
     <li className="flex justify-between sm:items-center border-b-2 pb-2">
@@ -70,6 +74,7 @@ export const CartItem = ({ product }: IProductItemCartProps) => {
         size={"icon"}
         variant={"outline"}
         className="flex border-2 border-accent rounded-[5px] p-[3px]  text-red-300 h-full "
+        onClick={handleRemoveProductCart}
       >
         <Trash2Icon size={20} />
       </Button>
