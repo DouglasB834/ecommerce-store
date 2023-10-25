@@ -1,9 +1,8 @@
 "use client";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { DiscountBadge } from "@/components/ui/discount-badge";
 import { IProductTotalPrice } from "@/helps/product";
 import {
-  ArrowDown,
   ArrowLeftIcon,
   ArrowRightIcon,
   StarIcon,
@@ -47,10 +46,11 @@ export const ProductInfo = ({
             R$ {Number(totalPrice)?.toFixed(2)}
           </h2>
           {discountPercentage > 0 && (
-            <Badge className=" py-[4px] px-[8px]">
-              <ArrowDown size={14} />
-              {discountPercentage}%
-            </Badge>
+            // <Badge className=" py-[4px] px-[8px]">
+            //   <ArrowDown size={14} />
+            //   {discountPercentage}%
+            // </Badge> estudo
+            <DiscountBadge>{discountPercentage}</DiscountBadge>
           )}
         </div>
         {discountPercentage > 0 && (
