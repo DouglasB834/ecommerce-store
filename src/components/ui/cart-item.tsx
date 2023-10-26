@@ -22,7 +22,7 @@ export const CartItem = ({ product }: IProductItemCartProps) => {
     removeProductCart(product.id);
   };
   return (
-    <li className="flex justify-between sm:items-center border-b-2 pb-2">
+    <li className="flex justify-between sm:items-center border-b-2 border-primary pb-2">
       <div className="flex gap-4 ">
         <figure className="w-[91px] h-[91px] flex items-center justify-center bg-accent rounded-xl">
           <Image
