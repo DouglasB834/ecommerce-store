@@ -6,6 +6,9 @@ import { CartContext } from "@/providers/context-cart";
 import { CartItem } from "./cart-item";
 import { computerProductPrice } from "@/helps/product";
 import { ScrollArea } from "./scroll-area";
+import { craeteCheckout } from "@/actions/checkout";
+import { Button } from "./button";
+import { loadStripe } from "@stripe/stripe-js";
 
 export const Cart = () => {
   const { products, totalPrice, subTotalPrice, totalDiscountPrice } =
@@ -16,6 +19,16 @@ export const Cart = () => {
       style: "currency",
       currency: "BRL",
       minimumFractionDigits: 2,
+    });
+  };
+
+  const handleCheckout = async () => {
+    const checkout = await craeteCheckout(products);
+    const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
+    stripe?.redirectToCheckout({
+      sessionId: checkout.id,
+      //processar o pagamento, na aplicação
+      //criar o pedido depois do pagamento aprovado
     });
   };
 
@@ -66,6 +79,13 @@ export const Cart = () => {
           <p>{formattedPrice(totalPrice)}</p>
         </div>
       </div>
+
+      <Button
+        className="text-sm font-semibold uppercase border-"
+        onClick={handleCheckout}
+      >
+        Finalizar compra
+      </Button>
     </div>
   );
 };
