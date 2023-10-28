@@ -1,11 +1,8 @@
 import { IProductTotalPrice } from "@/helps/product";
-import { Product } from "@prisma/client";
-
 import Image from "next/image";
 import React from "react";
-import { Badge } from "./badge";
-import { ArrowDown } from "lucide-react";
 import Link from "next/link";
+import { DiscountBadge } from "./discount-badge";
 
 interface IProductItemProps {
   product: IProductTotalPrice;
@@ -13,7 +10,7 @@ interface IProductItemProps {
 
 export const ProductItem = ({ product }: IProductItemProps) => {
   return (
-    <Link href={`product/${product.slug}`}>
+    <Link href={`/product/${product.slug}`}>
       <div className="flex flex-col gap-4  ">
         <div className="relative flex   items-center  justify-center rounded-lg bg-accent">
           <figure className="flex aspect-square justify-center items-center h-[170px] w-full">
@@ -28,10 +25,13 @@ export const ProductItem = ({ product }: IProductItemProps) => {
             />
           </figure>
           {product.discountPercentage > 0 && (
-            <Badge className="absolute text-xs  top-3 left-2 py-[4px] px-[8px]">
-              <ArrowDown size={14} />
-              {product?.discountPercentage}%
-            </Badge>
+            // <Badge className="absolute text-xs  top-3 left-2 py-[4px] px-[8px]">
+            //   <ArrowDown size={14} />
+            //   {product?.discountPercentage}%
+            // </Badge>
+            <DiscountBadge className="absolute text-xs top-3 left-2">
+              {product.discountPercentage}
+            </DiscountBadge>
           )}
         </div>
         <div className="flex flex-col gap-1">

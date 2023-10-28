@@ -11,7 +11,7 @@ export const ProductImages = ({ imageUrls, name }: IProductImgPros) => {
   const [currentImage, setCurrentImage] = useState(imageUrls[0]);
 
   return (
-    <div className="flex flex-col justify-center m-auto max-w-[1200px] py-2">
+    <div className="flex flex-col justify-center m-auto w-full max-w-[1200px] py-2">
       <figure className="flex w-full items-center justify-center bg-accent">
         <Image
           src={currentImage}
