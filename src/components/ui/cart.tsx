@@ -6,8 +6,8 @@ import { CartContext } from "@/providers/context-cart";
 import { CartItem } from "./cart-item";
 import { computerProductPrice } from "@/helps/product";
 import { ScrollArea } from "./scroll-area";
-import { craeteCheckout } from "@/actions/checkout";
 import { Button } from "./button";
+import { createCheckout } from "@/actions/checkout";
 import { loadStripe } from "@stripe/stripe-js";
 
 export const Cart = () => {
@@ -23,12 +23,13 @@ export const Cart = () => {
   };
 
   const handleCheckout = async () => {
-    const checkout = await craeteCheckout(products);
+    //back end criar checkout
+    const checkout = await createCheckout(products);
+    //front end
+    console.log(checkout);
     const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
     stripe?.redirectToCheckout({
       sessionId: checkout.id,
-      //processar o pagamento, na aplicação
-      //criar o pedido depois do pagamento aprovado
     });
   };
 
