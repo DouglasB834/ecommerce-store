@@ -7,12 +7,20 @@ import {
   LogInIcon,
   MenuIcon,
   PercentIcon,
-  ShoppingCart,
+  ShoppingCartIcon,
 } from "lucide-react";
-import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "./sheet";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetTrigger,
+} from "./sheet";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { Avatar, AvatarFallback } from "./avatar";
 import { AvatarImage } from "@radix-ui/react-avatar";
+import Link from "next/link";
+import { Cart } from "./cart";
 
 export const Header = () => {
   const { data, status } = useSession();
@@ -25,7 +33,6 @@ export const Header = () => {
     await signOut();
   };
 
-  console.log(useSession());
   return (
     <Card className="flex justify-between p-[1.8rem] items-center ">
       <Sheet key={"left"}>
@@ -73,24 +80,49 @@ export const Header = () => {
               </Button>
             )}
 
-            <Button variant={"outline"} className="w-full justify-start gap-2">
-              <HomeIcon size={16} /> Inicio
-            </Button>
+            <SheetClose asChild>
+              <Link href={"/"}>
+                <Button
+                  variant={"outline"}
+                  className="w-full justify-start gap-2"
+                >
+                  <HomeIcon size={16} /> Inicio
+                </Button>
+              </Link>
+            </SheetClose>
             <Button variant={"outline"} className="w-full justify-start gap-2">
               <PercentIcon size={16} /> Ofertas
             </Button>
-            <Button variant={"outline"} className="w-full justify-start gap-2">
-              <ListOrderedIcon size={16} /> Catálago
-            </Button>
+            <SheetClose asChild>
+              <Link href={`/catalogo`}>
+                <Button
+                  variant={"outline"}
+                  className="w-full justify-start gap-2"
+                >
+                  <ListOrderedIcon size={16} /> Catálogo
+                </Button>
+              </Link>
+            </SheetClose>
           </div>
         </SheetContent>
       </Sheet>
       <h1 className="font-bold text-lg ">
-        <span className="text-primary">Ecommerce</span> Store
+        <Link href={"/"}>
+          <span className="text-primary">Ecommerce</span> Store
+        </Link>
       </h1>
-      <Button variant={"outline"} size={"icon"}>
-        <ShoppingCart />
-      </Button>
+
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button variant={"outline"} size={"icon"}>
+            <ShoppingCartIcon />
+          </Button>
+        </SheetTrigger>
+
+        <SheetContent side={"right"} className="p-4 w-[88%] ">
+          <Cart />
+        </SheetContent>
+      </Sheet>
     </Card>
   );
 };
