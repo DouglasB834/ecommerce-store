@@ -26,7 +26,6 @@ export const Cart = () => {
     //back end criar checkout
     const checkout = await createCheckout(products);
     //front end
-    console.log(checkout);
     const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
     stripe?.redirectToCheckout({
       sessionId: checkout.id,
@@ -60,33 +59,37 @@ export const Cart = () => {
           </div>
         </ScrollArea>
       </ul>
-      <div className="flex flex-col gap-2">
-        <div className="flex justify-between text-sm border-b-[3px] opacity-75  py-1">
-          <p>Subtotal</p>
-          <p> {formattedPrice(subTotalPrice)}</p>
-        </div>
+      {products.length > 0 && (
+        <>
+          <div className="flex flex-col gap-2">
+            <div className="flex justify-between text-sm border-b-[3px] opacity-75  py-1">
+              <p>Subtotal</p>
+              <p> {formattedPrice(subTotalPrice)}</p>
+            </div>
 
-        <div className="flex justify-between text-sm border-b-[3px] opacity-75  py-1">
-          <p>Entrega</p>
-          <p>GRÁTIS</p>
-        </div>
+            <div className="flex justify-between text-sm border-b-[3px] opacity-75  py-1">
+              <p>Entrega</p>
+              <p>GRÁTIS</p>
+            </div>
 
-        <div className="flex justify-between text-sm border-b-[3px] opacity-75  py-1">
-          <p>Descontos</p>
-          <p>- {formattedPrice(totalDiscountPrice)}</p>
-        </div>
-        <div className="flex justify-between  items text-base border-b-[3px] font-semibold py-1 ">
-          <p>Total</p>
-          <p>{formattedPrice(totalPrice)}</p>
-        </div>
-      </div>
+            <div className="flex justify-between text-sm border-b-[3px] opacity-75  py-1">
+              <p>Descontos</p>
+              <p>- {formattedPrice(totalDiscountPrice)}</p>
+            </div>
+            <div className="flex justify-between  items text-base border-b-[3px] font-semibold py-1 ">
+              <p>Total</p>
+              <p>{formattedPrice(totalPrice)}</p>
+            </div>
+          </div>
 
-      <Button
-        className="text-sm font-semibold uppercase border-"
-        onClick={handleCheckout}
-      >
-        Finalizar compra
-      </Button>
+          <Button
+            className="text-sm font-semibold uppercase border-"
+            onClick={handleCheckout}
+          >
+            Finalizar compra
+          </Button>
+        </>
+      )}
     </div>
   );
 };
