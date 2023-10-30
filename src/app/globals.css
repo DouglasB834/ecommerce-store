@@ -36,6 +36,12 @@
   }
  
 }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 2fr)); /* Isso faz com que as colunas tenham um tamanho mínimo de 200px e preencham o espaço automaticamente */
+  grid-gap: 10px; 
+}
  
 @layer base {
   * {
