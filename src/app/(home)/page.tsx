@@ -27,9 +27,9 @@ export default async function Home() {
   });
 
   return (
-    <main className="flex flex-col gap-8 py-8 ">
+    <main className="flex flex-col max-w-[1200px] gap-8 py-8 m-auto ">
       <PromoBanner
-        src={"/banner_home_01.png"}
+        src={"/banner_home_01_desktop.png"}
         alt="Até 55% de desconto esse mês"
       />
       {/* category */}
@@ -42,10 +42,18 @@ export default async function Home() {
         <ProductList products={deals} />
       </div>
 
-      <PromoBanner
-        src={"/banner_home_02.png"}
-        alt="Até 55% de desconto em Mousese"
-      />
+      <div className="md:flex md:justify-center md:gap-2  md:h-[250px]">
+        <PromoBanner
+          src={"/banner_home_02.png"}
+          alt="Até 55% de desconto em Mousese"
+          className="w-full h-full object-cover px-5 md:px-0  "
+        />
+        <PromoBanner
+          src={"/banner_home_03.png"}
+          alt="Até 20% de desconto em Fone"
+          className="hidden md:block  w-full h-full  object-cover  "
+        />
+      </div>
 
       <div className="mt-8">
         <TitlesProducts>Teclados </TitlesProducts>
@@ -55,7 +63,15 @@ export default async function Home() {
       <PromoBanner
         src={"/banner_home_03.png"}
         alt="Até 20% de desconto em Fone"
+        className="w-full h-auto object-cover px-5 md:px-0 md:hidden"
       />
+
+      <PromoBanner
+        src={"/banner_fretegrátis.png"}
+        alt="Até 20% de desconto em Fone"
+        className="hidden md:block  w-full h-auto object-cover px-5  md:px-0 h- "
+      />
+
       <div className="mt-8">
         <TitlesProducts>Teclados </TitlesProducts>
         <ProductList products={mouses} />
