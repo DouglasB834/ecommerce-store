@@ -11,14 +11,6 @@ interface IProductListProps {
 }
 
 export const ProductList = async ({ products }: IProductListProps) => {
-  // const deals = await prismaClient.product.findMany({
-  //     where: {
-  //       discountPercentage: {
-  //         gt: 0,
-  //       },
-  //     },
-  //   });
-
   return (
     <section aria-label="Carde com desconto" className=" flex flex-col gap-2 ">
       <div

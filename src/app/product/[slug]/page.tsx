@@ -28,10 +28,13 @@ export default async function page({
   });
 
   return (
-    <div className="flex flex-col gap-8 mb-8">
-      <ProductImages imageUrls={product?.imageUrls!} name={product?.name!} />
+    <div className="flex flex-col  gap-8 mb-8 px-2">
+      <div className="flex flex-col md:flex-row gap-4">
+        <ProductImages imageUrls={product?.imageUrls!} name={product?.name!} />
 
-      <ProductInfo product={computerProductPrice(product!)} />
+        <ProductInfo product={computerProductPrice(product!)} />
+      </div>
+
       <div>
         <TitlesProducts>Produtos recomendados</TitlesProducts>
         <ProductList products={product?.category?.products!} />
