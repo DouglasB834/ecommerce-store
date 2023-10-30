@@ -1,7 +1,7 @@
 "use client";
+
 import { IProductTotalPrice } from "@/helps/product";
 import { createContext, ReactNode, useEffect, useMemo, useState } from "react";
-import Cookie from "js-cookie";
 
 export interface ICartProduct extends IProductTotalPrice {
   quantity: number;
@@ -28,9 +28,13 @@ interface IChildrenProps {
 export const CartContext = createContext<ICardContext>({} as ICardContext);
 
 export const CartProvider = ({ children }: IChildrenProps) => {
-  const [products, setProducts] = useState<ICartProduct[]>(() =>
-    JSON.parse(localStorage.getItem("store") || "[]")
-  );
+  const [products, setProducts] = useState<ICartProduct[]>(() => {
+    if (typeof window !== "undefined") {
+      const JsonProducts = JSON.parse(localStorage.getItem("store") || "[]");
+      return JsonProducts;
+    }
+    return [];
+  });
   //salva os produtos do carrinho no local storege ou cookie
 
   useEffect(() => {
@@ -42,7 +46,7 @@ export const CartProvider = ({ children }: IChildrenProps) => {
 
   // fazer a soma dos produto no carinho, com desconto
   const totalPrice = useMemo(() => {
-    return products.reduce(
+    return products?.reduce(
       (acc, product) => acc + Number(product.totalPrice) * product.quantity,
       0
     );
