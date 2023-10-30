@@ -1,7 +1,7 @@
 "use client";
 import { IProductTotalPrice } from "@/helps/product";
-import { Product } from "@prisma/client";
-import { createContext, ReactNode, useMemo, useState } from "react";
+import { createContext, ReactNode, useEffect, useMemo, useState } from "react";
+import Cookie from "js-cookie";
 
 export interface ICartProduct extends IProductTotalPrice {
   quantity: number;
@@ -28,7 +28,17 @@ interface IChildrenProps {
 export const CartContext = createContext<ICardContext>({} as ICardContext);
 
 export const CartProvider = ({ children }: IChildrenProps) => {
-  const [products, setProducts] = useState<ICartProduct[]>([]);
+  const [products, setProducts] = useState<ICartProduct[]>(() =>
+    JSON.parse(localStorage.getItem("store") || "[]")
+  );
+  //salva os produtos do carrinho no local storege ou cookie
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const productsJson = JSON.stringify(products);
+      localStorage.setItem("store", productsJson);
+    }
+  }, [products]);
 
   // fazer a soma dos produto no carinho, com desconto
   const totalPrice = useMemo(() => {

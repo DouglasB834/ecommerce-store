@@ -51,7 +51,9 @@ export const Header = () => {
                 <AvatarFallback>
                   {data?.user?.name?.[0].toLocaleUpperCase()}
                 </AvatarFallback>
-                {data.user?.image && <AvatarImage src={data.user?.image!} />}
+                {data.user?.image && (
+                  <AvatarImage src={data.user?.image! || ""} />
+                )}
               </Avatar>
               <div>
                 <span className="text-gray-400 text-xs  ">Boas compras</span>
@@ -90,9 +92,17 @@ export const Header = () => {
                 </Button>
               </Link>
             </SheetClose>
-            <Button variant={"outline"} className="w-full justify-start gap-2">
-              <PercentIcon size={16} /> Ofertas
-            </Button>
+            <SheetClose asChild>
+              <Link href={"/deals"}>
+                <Button
+                  variant={"outline"}
+                  className="w-full justify-start gap-2"
+                >
+                  <PercentIcon size={16} /> Ofertas
+                </Button>
+              </Link>
+            </SheetClose>
+
             <SheetClose asChild>
               <Link href={`/catalogo`}>
                 <Button
