@@ -106,7 +106,7 @@ export const ProductInfo = ({ product }: IProductInfoProps) => {
             onClick={handleAddToCart}
           >
             {isProdutoInCart
-              ? "Foi adicionado ao carinho"
+              ? "Foi adicionado ao carrinho"
               : "Adicionar ao carrinho"}
           </Button>
         </div>
