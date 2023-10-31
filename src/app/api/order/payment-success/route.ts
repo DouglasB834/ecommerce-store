@@ -26,7 +26,7 @@ export const POST = async (request: Request) => {
       }
     );
     const lineItems = sessionWithLineItems.line_items;
-    // console.log(lineItems); chamar o banco de dados para salva info dos pegidos pagos
+    // console.log(lineItems); chamar o banco de dados para salva info dos pedido pagos
   }
 
   return NextResponse.json({ received: true });
