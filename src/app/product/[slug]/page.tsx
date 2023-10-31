@@ -28,7 +28,7 @@ export default async function page({
   });
 
   return (
-    <div className="flex flex-col  gap-8 mb-8 px-2">
+    <div className="flex flex-col  gap-8 mb-8 px-2 max-w-[1250px]  m-auto">
       <div className="flex flex-col md:flex-row gap-4">
         <ProductImages imageUrls={product?.imageUrls!} name={product?.name!} />
 
