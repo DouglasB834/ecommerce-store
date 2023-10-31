@@ -25,10 +25,6 @@ export const ProductItem = ({ product }: IProductItemProps) => {
             />
           </figure>
           {product.discountPercentage > 0 && (
-            // <Badge className="absolute text-xs  top-3 left-2 py-[4px] px-[8px]">
-            //   <ArrowDown size={14} />
-            //   {product?.discountPercentage}%
-            // </Badge>
             <DiscountBadge className="absolute text-xs top-3 left-2">
               {product.discountPercentage}
             </DiscountBadge>

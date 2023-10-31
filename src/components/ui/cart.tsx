@@ -33,7 +33,7 @@ export const Cart = () => {
   };
 
   return (
-    <div className="flex flex-col gap-8 h-full">
+    <div className="flex flex-col gap-8 h-full ">
       <Badge
         className="w-fit uppercase  border-primary font-bold text-base gap-1 "
         variant={"outline"}

@@ -21,9 +21,12 @@ import { Avatar, AvatarFallback } from "./avatar";
 import { AvatarImage } from "@radix-ui/react-avatar";
 import Link from "next/link";
 import { Cart } from "./cart";
+import { useContext } from "react";
+import { CartContext } from "@/providers/context-cart";
 
 export const Header = () => {
   const { data, status } = useSession();
+  const { products } = useContext(CartContext);
 
   const handleLoginClick = async () => {
     await signIn();
@@ -35,7 +38,7 @@ export const Header = () => {
 
   return (
     <Card className="flex justify-between items-center w-full ">
-      <div className="flex justify-between p-[1.8rem] items-center w-full max-w-[1250px] m-auto ">
+      <div className="flex justify-between p-[1.8rem] items-center w-full max-w-[1250px]  m-auto ">
         <Sheet key={"left"}>
           {/* o btn que vai abrir as child  */}
           <SheetTrigger asChild>
@@ -123,17 +126,24 @@ export const Header = () => {
           </Link>
         </h1>
 
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button variant={"outline"} size={"icon"}>
-              <ShoppingCartIcon />
-            </Button>
-          </SheetTrigger>
+        <div className="relative ">
+          {products?.length > 0 && (
+            <p className="absolute w-[15px] h-[15px] rounded-full right-0 bg-blue-500 flex items-center justify-center font-semibold border border-red-400 text-xs">
+              {products?.length}
+            </p>
+          )}
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant={"outline"} size={"icon"}>
+                <ShoppingCartIcon />
+              </Button>
+            </SheetTrigger>
 
-          <SheetContent side={"right"} className="p-4 w-[88%] ">
-            <Cart />
-          </SheetContent>
-        </Sheet>
+            <SheetContent side={"right"} className="p-4 w-[88%] ">
+              <Cart />
+            </SheetContent>
+          </Sheet>
+        </div>
       </div>
     </Card>
   );
