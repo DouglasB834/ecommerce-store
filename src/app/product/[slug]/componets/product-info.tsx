@@ -9,7 +9,7 @@ import {
   StarIcon,
   TruckIcon,
 } from "lucide-react";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 interface IProductInfoProps {
   product: IProductTotalPrice;
@@ -23,7 +23,8 @@ interface IProductInfoProps {
 
 export const ProductInfo = ({ product }: IProductInfoProps) => {
   const [quantity, setQuantity] = useState(1);
-  const { addToCart } = useContext(CartContext);
+  const [isProdutoInCart, setisProdutoInCart] = useState<boolean>(false);
+  const { addToCart, products } = useContext(CartContext);
 
   const handleDecreaseQuatity = () => {
     setQuantity((prev) => (prev == 1 ? prev : prev - 1));
@@ -35,6 +36,11 @@ export const ProductInfo = ({ product }: IProductInfoProps) => {
   const handleAddToCart = () => {
     addToCart({ ...product, quantity });
   };
+
+  useEffect(() => {
+    const teste = products.some((item) => item.id === product.id);
+    setisProdutoInCart(teste);
+  }, [product.id, products]);
 
   return (
     <div className="mt-8 max-w-[480px] m-auto  p-5 bg-accent ">
@@ -94,10 +100,14 @@ export const ProductInfo = ({ product }: IProductInfoProps) => {
           <p className="text-[14px] opacity-70">{product.description}</p>
           <Button
             variant={"default"}
-            className=" text-base font-bold uppercase pt-2 mt-10"
+            className={`sm:text-base font-bold uppercase pt-2 mt-10 ${
+              isProdutoInCart ? "bg-green-500" : "bg-primary"
+            }`}
             onClick={handleAddToCart}
           >
-            Adicionar ao carrinho
+            {isProdutoInCart
+              ? "Foi adicionado ao carinho"
+              : "Adicionar ao carrinho"}
           </Button>
         </div>
         <div className=" flex items-center justify-between py-2 px-5 mt-5 bg-[#2A2A2A] rounded-md">
