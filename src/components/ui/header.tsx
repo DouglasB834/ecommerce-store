@@ -7,7 +7,9 @@ import {
   LogInIcon,
   MenuIcon,
   PercentIcon,
+  ShoppingBagIcon,
   ShoppingCartIcon,
+  UserIcon,
 } from "lucide-react";
 import {
   Sheet,
@@ -74,7 +76,7 @@ export const Header = () => {
                   className="w-full justify-start gap-2"
                   onClick={handleLogoutClick}
                 >
-                  <LogInIcon size={16} /> Sair
+                  <UserIcon size={16} /> Sair
                 </Button>
               ) : (
                 <Button
@@ -85,17 +87,17 @@ export const Header = () => {
                   <LogInIcon size={16} /> Fazer login
                 </Button>
               )}
-
               <SheetClose asChild>
-                <Link href={"/"}>
+                <Link href={"/orders"}>
                   <Button
                     variant={"outline"}
                     className="w-full justify-start gap-2"
                   >
-                    <HomeIcon size={16} /> Inicio
+                    <ShoppingBagIcon size={16} /> Meu pedidos
                   </Button>
                 </Link>
               </SheetClose>
+
               <SheetClose asChild>
                 <Link href={"/deals"}>
                   <Button
