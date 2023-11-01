@@ -16,12 +16,16 @@ const OrderPage = async () => {
       id: (user as any).id,
     },
     include: {
-      orderProducts: true,
+      orderProducts: {
+        include: {
+          product: true,
+        },
+      },
     },
   });
 
   return (
-    <div className="flex flex-col p-5 gap-4">
+    <div className="flex flex-col p-5 gap-4 max-w-[1200px]">
       <Badge
         className="w-fit uppercase px-[12px] py-[5px] border-primary font-bold text-base gap-1 "
         variant={"outline"}
