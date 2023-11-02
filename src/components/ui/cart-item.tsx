@@ -82,6 +82,7 @@ export const CartItem = ({ product }: IProductItemCartProps) => {
           </div>
         </div>
       </div>
+
       <Button
         size={"icon"}
         variant={"outline"}
