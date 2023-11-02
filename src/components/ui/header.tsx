@@ -42,13 +42,11 @@ export const Header = () => {
     <Card className="flex justify-between items-center w-full ">
       <div className="flex justify-between p-[1.8rem] items-center w-full max-w-[1250px]  m-auto ">
         <Sheet key={"left"}>
-          {/* o btn que vai abrir as child  */}
           <SheetTrigger asChild>
             <Button variant={"outline"} size={"icon"}>
               <MenuIcon />
             </Button>
           </SheetTrigger>
-          {/* Shetcontent para o conteudo que vai ter dentro  */}
           <SheetContent side={"left"}>
             <SheetHeader className="text-lg font-semibold">Menu</SheetHeader>
             {status === "authenticated" && data.user && (
