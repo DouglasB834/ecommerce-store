@@ -101,6 +101,13 @@ export const Cart = () => {
           >
             Finalizar compra
           </Button>
+          <p className="text-sm">
+            {" "}
+            Cartão para teste:{" "}
+            <span className="font-semibold border-b-2 border-primary">
+              4242-4242-4242-4242
+            </span>{" "}
+          </p>
         </>
       )}
     </div>
