@@ -38,10 +38,8 @@ export const CartProvider = ({ children }: IChildrenProps) => {
   //salva os produtos do carrinho no local storege ou cookie
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const productsJson = JSON.stringify(products);
-      localStorage.setItem("store", productsJson);
-    }
+    const productsJson = JSON.stringify(products);
+    localStorage.setItem("store", productsJson);
   }, [products]);
 
   // fazer a soma dos produto no carinho, com desconto

@@ -15,11 +15,10 @@ export const CategoryItem = ({ category }: ICategoryItemProps) => {
           <Image
             src={category?.imageUrl}
             alt={category?.name}
-            title={category?.name}
             width={0}
             height={0}
             sizes="100vw"
-            className=" h-auto w-auto  max-h-[70%] max-w-[80%] object-cover"
+            className=" h-auto w-auto  max-h-[70%] max-w-[80%] object-contain  min-w-[145px]"
           />
         </figure>
 

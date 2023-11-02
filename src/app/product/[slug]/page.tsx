@@ -4,6 +4,9 @@ import { ProductInfo } from "./componets/product-info";
 import { computerProductPrice } from "@/helps/product";
 import { ProductList } from "@/components/ui/product-list";
 import { TitlesProducts } from "@/components/ui/titlesProducts";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { BtnBackPage } from "@/components/ui/btn-back-page";
 
 interface IProductDetailsPageProps {
   params: { slug: string };
@@ -29,6 +32,7 @@ export default async function page({
 
   return (
     <div className="flex flex-col  gap-8 mb-8 px-2 max-w-[1250px]  m-auto">
+      <BtnBackPage />
       <div className="flex flex-col md:flex-row gap-4">
         <ProductImages imageUrls={product?.imageUrls!} name={product?.name!} />
 
