@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
-
 import { Badge } from "./badge";
-import { ShoppingCartIcon } from "lucide-react";
+import { Sheet, ShoppingCartIcon } from "lucide-react";
 import { CartContext } from "@/providers/context-cart";
 import { CartItem } from "./cart-item";
 import { computerProductPrice } from "@/helps/product";
@@ -9,10 +8,13 @@ import { ScrollArea } from "./scroll-area";
 import { Button } from "./button";
 import { createCheckout } from "@/actions/checkout";
 import { loadStripe } from "@stripe/stripe-js";
+import { useSession } from "next-auth/react";
+import { createOrder } from "@/actions/order";
 
 export const Cart = () => {
   const { products, totalPrice, subTotalPrice, totalDiscountPrice } =
     useContext(CartContext);
+  const { data } = useSession();
 
   const formattedPrice = (price: number) => {
     return price.toLocaleString("pt-BR", {
@@ -23,13 +25,24 @@ export const Cart = () => {
   };
 
   const handleCheckout = async () => {
-    //back end criar checkout
-    const checkout = await createCheckout(products);
+    // serve action status da compra
+    if (!data?.user) {
+      return alert("Faça login para finalizar a compra");
+    }
+    const order = await createOrder(products, (data?.user as any).id);
+    //backEnd criar checkout
+    const checkout = await createCheckout(products, order.id);
+
     //front end
     const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
+
+    // Criar pedido no banco
     stripe?.redirectToCheckout({
       sessionId: checkout.id,
     });
+    if (checkout) {
+      localStorage.removeItem("store");
+    }
   };
 
   return (
@@ -88,6 +101,13 @@ export const Cart = () => {
           >
             Finalizar compra
           </Button>
+          <p className="text-sm">
+            {" "}
+            Cartão para teste:{" "}
+            <span className="font-semibold border-b-2 border-primary">
+              4242-4242-4242-4242
+            </span>{" "}
+          </p>
         </>
       )}
     </div>

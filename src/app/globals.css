@@ -42,6 +42,10 @@
   grid-template-columns: repeat(auto-fill, minmax(180px, 2fr)); /* Isso faz com que as colunas tenham um tamanho mínimo de 200px e preencham o espaço automaticamente */
   grid-gap: 10px; 
 }
+
+.borderB div:not(:last-child) {
+  border-bottom: 1px solid #acacac23
+}
  
 @layer base {
   * {
@@ -53,4 +57,25 @@
   html {
     @apply h-full;
   }
+}
+
+/* tamanho  e largura da barra de rolagem ;) */
+::-webkit-scrollbar {
+  height: 10px;
+  width: .8rem ;
+}
+
+/* Cor de fundo do traço da barra de rolagem horizontal */
+::-webkit-scrollbar-track-piece:start {
+  background: #000; /* Cor preta */
+}
+
+/* Cor da alça da barra de rolagem horizontal */
+::-webkit-scrollbar-thumb {
+  background: #8162FF ;/* Cor vermelha */
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8162ff9f /* Cor vermelha mais clara */
 }

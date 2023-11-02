@@ -15,11 +15,11 @@ export const ProductList = async ({ products }: IProductListProps) => {
     <section aria-label="Carde com desconto" className=" flex flex-col gap-2 ">
       <div
         className="flex overflow-x-auto  
-    [&::-webkit-scrollbar]:hidden gap-4 px-3
+    [&::-webkit-scrollbar]:hidden sm:[&::-webkit-scrollbar]:block  gap-4 px-3
     "
       >
         {products.map((product) => (
-          <div key={product?.id} className="w-[170px]">
+          <div key={product?.id} className="w-[170px] pb-3">
             <ProductItem product={computerProductPrice(product)} />
           </div>
         ))}

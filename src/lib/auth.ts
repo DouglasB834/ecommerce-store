@@ -10,6 +10,20 @@ export const authOptions: AuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      authorization:
+        "https://accounts.google.com/o/oauth2/auth?prompt=select_account",
     }),
   ],
+  callbacks: {
+    //para pegar o id callback nao vem por padrão
+    async session({ session, token, user }) {
+      session.user = { ...session.user, id: user.id } as {
+        id: string;
+        name: string;
+        email: string;
+      };
+
+      return session;
+    },
+  },
 };

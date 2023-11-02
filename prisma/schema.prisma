@@ -21,18 +21,47 @@ model Category {
 
 //tabela product 
 model Product {
-  id                 String   @id @default(uuid())
+  id                 String         @id @default(uuid())
   name               String
   slug               String
   description        String
-  basePrice          Decimal  @db.Decimal(8, 2)
+  basePrice          Decimal        @db.Decimal(8, 2)
   imageUrls          String[]
   categoryId         String
-  category           Category @relation(fields: [categoryId], references: [id])
-  discountPercentage Int      @default(0)
+  category           Category       @relation(fields: [categoryId], references: [id])
+  discountPercentage Int            @default(0)
+  OrderProduct       OrderProduct[]
 }
 
 //fazer totalPrice com campo dinamico pegando o discount..+ basePrice fn healp
+
+// model order vincular com o id do usuario/ product
+model Order {
+  id            String         @id @default(uuid())
+  userId        String
+  user          User           @relation(fields: [userId], references: [id])
+  orderProducts OrderProduct[]
+  status        OrderStatus    @default(WAITING_FOR_PAYMENT)
+  createAt      DateTime       @default(now())
+  updateAt      DateTime       @default(now()) @updatedAt
+}
+
+// enum com status de pagamento campo so vai poder ter essas opções
+enum OrderStatus {
+  WAITING_FOR_PAYMENT
+  PAYMENT_CONFIRMED
+}
+
+model OrderProduct {
+  id                 String  @id @default(uuid())
+  productId          String
+  basePrice          Decimal @db.Decimal(8, 2)
+  discountPercentage Int     @default(0)
+  quantity           Int
+  product            Product @relation(fields: [productId], references: [id])
+  orderId            String?
+  Order              Order?  @relation(fields: [orderId], references: [id])
+}
 
 model Account {
   id                String  @id @default(cuid())
@@ -69,6 +98,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  Order         Order[]
 }
 
 model VerificationToken {
