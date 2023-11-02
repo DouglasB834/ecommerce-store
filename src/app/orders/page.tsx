@@ -7,9 +7,9 @@ import { OrderItem } from "./components/order-item";
 import { BtnBackPage } from "@/components/ui/btn-back-page";
 
 const OrderPage = async () => {
-  const user = await getServerSession(authOptions); //tras user auth serve side
+  const session = await getServerSession(authOptions); //tras user auth serve side
 
-  if (!user?.user) {
+  if (!session?.user || !session) {
     return (
       <div className="flex flex-col justify-center items-center">
         <UserIcon size={64} className="text-primary" />
@@ -17,9 +17,10 @@ const OrderPage = async () => {
       </div>
     );
   }
+
   const orders = await prismaClient.order.findMany({
     where: {
-      id: (user as any).id,
+      userId: (session.user as any).id,
     },
     include: {
       orderProducts: {
