@@ -3,8 +3,10 @@ import { Button } from "./button";
 
 export const BtnBackPage = () => {
   return (
-    <Button className="pt-2 " variant={"outline"}>
-      <Link href="javascript:history.back()">Voltar</Link>
-    </Button>
+    <Link href="javascript:history.back()">
+      <Button title="botão para boltar " className="pt-2 " variant={"outline"}>
+        Voltar
+      </Button>
+    </Link>
   );
 };
