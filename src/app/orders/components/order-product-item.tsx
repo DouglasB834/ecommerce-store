@@ -22,7 +22,7 @@ export const OrderProductItem = ({ orderProduct }: IOrderProductProps) => {
   const totalPrice = computerProductPrice(orderProduct.product);
 
   return (
-    <div className="flex gap-4 ">
+    <div className="flex gap-4 border-b border-primary pb-1 bg-accent ">
       <figure className="flex items-center justify-center w-[91px] h-[91px] bg-accent rounded-xl">
         <Image
           src={orderProduct?.product?.imageUrls[0]}
@@ -52,7 +52,7 @@ export const OrderProductItem = ({ orderProduct }: IOrderProductProps) => {
               </span>
             )}
           </div>
-          <span>Qtd:{orderProduct.quantity}</span>
+          <span className="mr-2">Qtd:{orderProduct.quantity}</span>
         </div>
       </div>
     </div>

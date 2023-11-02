@@ -55,7 +55,7 @@ export const OrderItem = ({ order }: IOrderItemProps) => {
   }, [subTotal, totalPrice]);
 
   return (
-    <Card className="px-4">
+    <Card className="px-4 ">
       <Accordion type="single" collapsible className="w-full">
         <AccordionItem value={`${order.id}`}>
           <AccordionTrigger>
@@ -64,13 +64,13 @@ export const OrderItem = ({ order }: IOrderItemProps) => {
                 Pedido com {order.orderProducts.length} Produto
               </h3>
               <p className="text-xs">
-                Pedido:{format(order?.updateAt, "dd/MM/yyyy")}
+                Pedido:{format(order?.updateAt, "dd/MM/yyyy 'as' HH:mm ")}
               </p>
             </div>
           </AccordionTrigger>
           <AccordionContent>
             {/* informaçãp do produto  */}
-            <div className="flex flex-col gap-4 ">
+            <div className="flex flex-col gap-4">
               <div className="flex justify-between  items-center">
                 <div>
                   {/* status */}

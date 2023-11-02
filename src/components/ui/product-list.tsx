@@ -1,7 +1,5 @@
 import { ProductItem } from "@/components/ui/product-item";
-import { TitlesProducts } from "@/components/ui/titlesProducts";
 import { computerProductPrice } from "@/helps/product";
-import { prismaClient } from "@/lib/prisma";
 import { Product } from "@prisma/client";
 
 import React from "react";
