@@ -54,6 +54,12 @@ export const OrderItem = ({ order }: IOrderItemProps) => {
     return subTotal - totalPrice;
   }, [subTotal, totalPrice]);
 
+  /*
+   verificar os produtos que estão como pentente 
+   se estiver pentende colcoar um botão de finaliar compra ... 
+   chamando o checkout do mesmo 
+  */
+
   return (
     <Card className="px-4 ">
       <Accordion type="single" collapsible className="w-full">
