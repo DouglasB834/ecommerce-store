@@ -86,6 +86,17 @@ export const Header = () => {
                 </Button>
               )}
               <SheetClose asChild>
+                <Link href={"/"}>
+                  <Button
+                    variant={"outline"}
+                    className="w-full justify-start gap-2"
+                  >
+                    <HomeIcon size={16} /> Inicio
+                  </Button>
+                </Link>
+              </SheetClose>
+
+              <SheetClose asChild>
                 <Link href={"/orders"}>
                   <Button
                     variant={"outline"}
