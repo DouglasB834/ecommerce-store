@@ -10,7 +10,7 @@ export default async function page() {
 
   return (
     <div className="flex flex-col gap-8 p-5  max-w-[1200px] m-auto ">
-      <div className="flex justify-between">
+      <div className="flex gap-2">
         <Badge
           className="w-fit uppercase px-[12px] py-[5px] border-primary font-bold text-base gap-1 "
           variant={"outline"}

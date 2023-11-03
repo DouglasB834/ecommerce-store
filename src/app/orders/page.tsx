@@ -33,7 +33,7 @@ const OrderPage = async () => {
 
   return (
     <div className="flex flex-col p-5 gap-4 max-w-[1250px] m-auto">
-      <div className="flex gap-2 justify-between">
+      <div className="flex gap-2 ">
         <Badge
           className="w-fit uppercase px-[12px] py-[5px] border-primary font-bold text-base gap-1 "
           variant={"outline"}
