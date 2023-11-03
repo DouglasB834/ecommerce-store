@@ -24,7 +24,7 @@ async function main() {
           "https://fsw-store.s3.sa-east-1.amazonaws.com/03_mx-master-3s.png",
           "https://fsw-store.s3.sa-east-1.amazonaws.com/04_mx-master-3s.png",
         ],
-        basePrice: 650,
+        basePrice: 350,
         categoryId: mousesCategory.id,
         discountPercentage: 10, // 10% discount
       },
@@ -39,7 +39,7 @@ async function main() {
           "https://fsw-store.s3.sa-east-1.amazonaws.com/03_logi-superlight.png",
           "https://fsw-store.s3.sa-east-1.amazonaws.com/04_logi-superlight.png",
         ],
-        basePrice: 750,
+        basePrice: 450,
         categoryId: mousesCategory.id,
         discountPercentage: 5, // 5% discount
       },
@@ -54,7 +54,7 @@ async function main() {
           "https://fsw-store.s3.sa-east-1.amazonaws.com/03_logi-lightspeed.png",
           "https://fsw-store.s3.sa-east-1.amazonaws.com/04_logi-lightspeed.png",
         ],
-        basePrice: 300,
+        basePrice: 220,
         categoryId: mousesCategory.id,
         discountPercentage: 15, // 15% discount
       },
@@ -69,7 +69,7 @@ async function main() {
           "https://fsw-store.s3.sa-east-1.amazonaws.com/03_hyperx-dart.png",
           "https://fsw-store.s3.sa-east-1.amazonaws.com/04_hyperx-dart.png",
         ],
-        basePrice: 600,
+        basePrice: 435,
         categoryId: mousesCategory.id,
         discountPercentage: 10, // 10% discount
       },
@@ -114,7 +114,7 @@ async function main() {
           "https://fsw-store.s3.sa-east-1.amazonaws.com/03_logi-mx-keys-mini.png",
           "https://fsw-store.s3.sa-east-1.amazonaws.com/04_logi-mx-keys-mini.png",
         ],
-        basePrice: 650,
+        basePrice: 150,
         categoryId: keyboardsCategory.id,
         discountPercentage: 10, // 10% discount
       },
@@ -129,7 +129,7 @@ async function main() {
           "https://fsw-store.s3.sa-east-1.amazonaws.com/03_logi-mx-keys-s.png",
           "https://fsw-store.s3.sa-east-1.amazonaws.com/04_logi-mx-keys-s.png",
         ],
-        basePrice: 750,
+        basePrice: 350,
         categoryId: keyboardsCategory.id,
         discountPercentage: 10, // 10% discount
       },
