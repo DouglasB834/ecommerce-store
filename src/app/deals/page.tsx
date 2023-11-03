@@ -17,7 +17,7 @@ const DealsPage = async () => {
 
   return (
     <div className="p-5 flex flex-col gap-4 max-w-[1200px] m-auto">
-      <div className="flex justify-between ">
+      <div className="flex gap-2">
         <Badge
           className="w-fit uppercase  border-primary font-bold text-base gap-1 "
           variant={"outline"}
