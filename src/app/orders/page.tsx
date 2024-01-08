@@ -42,7 +42,7 @@ const OrderPage = async () => {
         </Badge>
         <BtnBackPage />
       </div>
-      <ul className="flex flex-col gap-5">
+      <ul className="flex flex-col gap-5 ">
         {orders
           .map((order) => <OrderItem key={order.id} order={order} />)
           .reverse()}
