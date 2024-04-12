@@ -8,7 +8,7 @@ acesse o Projeto [ECOMMERCE STORE ](https://ecommerce-store-seven-lilac.vercel.a
 
 Projeto de estudos de E-commerce, simula uma aplicação de compra de produtos eletrônicos online, como teclados, mouses, monitores e gabinetes etc. Foi criado um carrinho de compras para os produtos, juntamente com a integração do Stripe para o método de pagamento e verificação.
 
-O projeto foi ministrado pelo [Felipe Mota Rocha](https://github.com/felipemotarocha) em uma transmissão ao vivo para nos ensinar mais sobre o Next, o que com certeza agregou bastante ao nosso conhecimento.
+O projeto foi ministrado pelo [Felipe Mota Rocha](https://github.com/felipemotarocha) para nos ensinar mais sobre o Next, o que com certeza agregou bastante ao nosso conhecimento.
 
 ## Tecnologias usadas
 
